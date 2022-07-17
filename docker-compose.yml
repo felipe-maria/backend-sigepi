@@ -1,0 +1,25 @@
+version: "3.7"
+services:
+  sigepi-service:
+    image: quarkus/backend-sigepi-jvm
+    build:
+      context: .
+      dockerfile: src/main/docker/Dockerfile.jvm
+    ports:
+      - "8080:8080"
+      - "5005:5005"
+    environment:
+      VAR: examplevar
+    depends_on:
+      - sigepi-db
+
+  sigepi-db:
+    image: mysql:8-debian
+    ports:
+      - "3306:3306"
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: sigepi
+
