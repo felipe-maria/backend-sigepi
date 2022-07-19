@@ -14,12 +14,11 @@ services:
       - sigepi-db
 
   sigepi-db:
-    image: mysql:8-debian
+    image: postgres:11.11
     ports:
-      - "3306:3306"
-    command: --default-authentication-plugin=mysql_native_password
-    restart: always
+      - "5432:5432"
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: sigepi
+      - POSTGRES_DB=sigepidb
+      - POSTGRES_USER=sigepidb
+      - POSTGRES_PASSWORD=pass1234
 
