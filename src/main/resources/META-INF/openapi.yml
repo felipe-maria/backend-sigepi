@@ -1,0 +1,64 @@
+openapi: 3.0.1
+info:
+  contact:
+    email: felipe.antonio.maria@gmail.com
+  description: 'API for Sigepi service '
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: SIGEPI API
+  version: 1.0.0
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+  - description: sigepi-local
+    url: http://localhost:8080/
+security:
+  - token_auth: [ ]
+
+tags:
+  - name: tickets
+    description: Everything related to Ticket resource
+
+paths:
+  /tickets:
+    get:
+      summary: Find all Tickets
+      description: Find all Tickets for current user
+      operationId: findAllTickets
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/TicketTO'
+                type: array
+          description: successful operation
+        "400":
+          content: { }
+          description: Invalid status value
+      tags:
+        - tickets
+      x-accepts: application/json
+      x-tags:
+        - tag: tickets
+
+components:
+  schemas:
+    # Read only TOs section (Not input TO)
+    TicketTO:
+      properties:
+        id:
+          format: int64
+          type: integer
+          example: 1
+
+  securitySchemes:
+    token_auth:
+      bearerFormat: JWT
+      description: This is the bearer token.
+      scheme: bearer
+      type: http
