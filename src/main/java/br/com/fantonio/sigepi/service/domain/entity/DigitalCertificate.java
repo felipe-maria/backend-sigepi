@@ -35,8 +35,6 @@ public class DigitalCertificate implements Serializable {
     @Enumerated(EnumType.STRING)
     private DigitalCertificateSegment segment;
 
-    private Boolean expired;
-
     @Column(name="expiry_date")
     private LocalDate expiry_date;
 

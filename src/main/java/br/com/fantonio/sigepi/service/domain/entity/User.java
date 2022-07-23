@@ -1,6 +1,6 @@
 package br.com.fantonio.sigepi.service.domain.entity;
 
-import br.com.fantonio.sigepi.service.domain.entity.type.FederativeUnity;
+import br.com.fantonio.sigepi.service.domain.entity.type.IssuerFederateUnit;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -16,7 +16,7 @@ public class User {
     private Long id;
     private String name;
 
-    @Column(name = "emailAddress")
+    @Column(name = "email_address")
     private String emailAddress;
 
     @Column(name = "cpf_number")
@@ -28,14 +28,14 @@ public class User {
     @Column(name = "rg_issuer_code")
     private String rgIssuerCode;
 
-    @Column(name = "rg_issuer_fed_unity")
+    @Column(name = "rg_issuer_fed_unit")
     @Enumerated(EnumType.STRING)
-    private FederativeUnity rgIssuerFederativeUnity;
+    private IssuerFederateUnit rgIssuerIssuerFederateUnit;
 
     @Column(name= "birth_date")
     private LocalDate birthDate;
 
-    @Lob
+    @Basic(fetch = FetchType.LAZY)
     private byte[] picture;
 
     private String comments;
