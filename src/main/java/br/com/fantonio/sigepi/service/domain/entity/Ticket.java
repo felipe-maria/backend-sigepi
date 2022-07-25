@@ -29,11 +29,11 @@ public class Ticket {
 
     @ManyToOne
     @JoinColumn(name = "requester_id")
-    private User requester_id;
+    private User requesterId;
 
     @ManyToOne
     @JoinColumn(name = "last_responsible_id")
-    private User last_responsible_id;
+    private User lastResponsibleId;
 
     @Enumerated(EnumType.STRING)
     private TicketStatus status;
