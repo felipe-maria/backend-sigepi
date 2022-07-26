@@ -1,26 +1,28 @@
 package br.com.fantonio.sigepi.service.resource;
 
+import br.com.fantonio.sigepi.service.api.UsersApi;
+import br.com.fantonio.sigepi.service.api.model.UserTO;
+import br.com.fantonio.sigepi.service.business.ListAllUsers;
 import br.com.fantonio.sigepi.service.domain.entity.User;
-import br.com.fantonio.sigepi.service.domain.repository.UserRepository;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 
 import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-@Path("/users")
-public class UserResource {
+public class UserResource implements UsersApi {
 
     @Inject
-    UserRepository userRepository;
+    private ListAllUsers listAllUsers;
 
-    @GET
-    public Response getUsers(){
-        List<User> users = userRepository.findAll().list();
-        users.forEach(user ->
-                System.out.println(String.format("Id: %s - Nome: %s", user.getId(), user.getName()))
-        );
-        return Response.ok().build();
+    @Override
+    public Response listAllUsers() {
+        List<User> users = listAllUsers.doIt();
+
+        ModelMapper modelMapper = new ModelMapper();
+        List<UserTO> tos = modelMapper.map(users, new TypeToken<List<UserTO>>() {}.getType());
+
+        return Response.ok().entity(tos).build();
     }
 }

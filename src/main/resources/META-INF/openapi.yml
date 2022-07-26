@@ -21,13 +21,15 @@ security:
 tags:
   - name: tickets
     description: Everything related to Ticket resource
+  - name: users
+    description: Everything related to User resource
 
 paths:
   /tickets:
     get:
-      summary: Find all Tickets
-      description: Find all Tickets for current user
-      operationId: findAllTickets
+      summary: List all Tickets
+      description: List all Tickets for current user
+      operationId: listAllTickets
       responses:
         "200":
           content:
@@ -45,6 +47,28 @@ paths:
       x-accepts: application/json
       x-tags:
         - tag: tickets
+  /users:
+    get:
+      summary: List all Users
+      description: List all Users
+      operationId: listAllUsers
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/UserTO'
+                type: array
+          description: successful operation
+        "400":
+          content: { }
+          description: Invalid status value
+      tags:
+        - users
+      x-accepts: application/json
+      x-tags:
+        - tag: users
 
 components:
   schemas:
@@ -55,6 +79,22 @@ components:
           format: int64
           type: integer
           example: 1
+    UserTO:
+      properties:
+        id:
+          format: int64
+          type: integer
+          example: 1
+        name:
+          type: string
+        emailAddress:
+          type: string
+        cpfNumber:
+          type: string
+        rgNumber:
+          type: string
+        rgIssuerCode:
+          type: string
 
   securitySchemes:
     token_auth:

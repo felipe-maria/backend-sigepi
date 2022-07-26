@@ -10,7 +10,7 @@ import java.util.List;
 public class TicketResource implements TicketsApi {
 
     @Override
-    public Response findAllTickets() {
+    public Response listAllTickets() {
         List<TicketTO> tos = new ArrayList<>();
         TicketTO to = new TicketTO();
         to.setId(1L);
@@ -21,4 +21,5 @@ public class TicketResource implements TicketsApi {
 
         return Response.ok().entity(tos).build();
     }
+
 }
