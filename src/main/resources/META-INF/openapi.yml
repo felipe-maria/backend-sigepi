@@ -70,9 +70,39 @@ paths:
       x-tags:
         - tag: users
 
+    post:
+      summary: Add a new User
+      description: Add a new User
+      operationId: createUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserITO'
+        description: An object containing only raw values and Ids for creating
+          a TTI
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserTO'
+          description: successful operation
+      tags:
+        - users
+      x-contentType: application/json
+      x-accepts: application/json
+      x-tags:
+        - tag: users
+
 components:
   schemas:
-    # Read only TOs section (Not input TO)
+
+##############################################
+# Read only TOs section (Not input TO)
+##############################################
+
     TicketTO:
       properties:
         id:
@@ -95,6 +125,31 @@ components:
           type: string
         rgIssuerCode:
           type: string
+
+#############################################
+# ITO - Input TO Section
+#############################################
+    CreateUserITO:
+      required:
+        - name
+        - emailAddress
+        - cpfNumber
+      properties:
+        name:
+          type: string
+          minLength: 5
+          maxLength: 75
+          example: John Doe
+        emailAddress:
+          type: string
+          minLength: 9
+          maxLength: 100
+          example: john.doe@mail.com
+        cpfNumber:
+          type: string
+          minLength: 11
+          maxLength: 11
+          example: 35522245722
 
   securitySchemes:
     token_auth:

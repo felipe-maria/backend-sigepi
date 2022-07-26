@@ -31,7 +31,6 @@
         </dependencies>
     </dependencyManagement>
     <dependencies>
-
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-resteasy-reactive-jackson</artifactId>
@@ -76,6 +75,11 @@
             <artifactId>quarkus-junit5</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-smallrye-openapi</artifactId>
+        </dependency>
+
         <!-- Openapi codegen and generated code dependencies -->
         <dependency>
             <groupId>org.openapitools</groupId>
@@ -122,7 +126,7 @@
                                 <performBeanValidation>true</performBeanValidation>
                                 <useBeanValidation>true</useBeanValidation>
                                 <returnResponse>true</returnResponse>
-                                <library>quarkus</library>
+
                             </configOptions>
                         </configuration>
                     </execution>
