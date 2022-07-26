@@ -135,12 +135,12 @@ components:
         - emailAddress
       properties:
         name:
-          format: string
+          type: string
           minLength: 5
           maxLength: 75
           example: John Doe
         emailAddress:
-          format: string
+          type: string
           minLength: 9
           maxLength: 100
           example: john.doe@mail.com
