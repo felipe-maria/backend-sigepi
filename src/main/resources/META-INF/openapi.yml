@@ -47,6 +47,33 @@ paths:
       x-accepts: application/json
       x-tags:
         - tag: tickets
+  /users/{userId}:
+    get:
+      summary: Get an user by its Id
+      description: Get an user by its Id
+      operationId: getUserById
+      parameters:
+        - in: path
+          required: true
+          name: userId
+          schema:
+            format: int64
+            type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserTO'
+          description: successful operation
+        "400":
+          content: { }
+          description: Invalid status value
+      tags:
+        - users
+      x-accepts: application/json
+      x-tags:
+        - tag: users
   /users:
     get:
       summary: List all Users
@@ -99,9 +126,9 @@ paths:
 components:
   schemas:
 
-##############################################
-# Read only TOs section (Not input TO)
-##############################################
+    ##############################################
+    # Read only TOs section (Not input TO)
+    ##############################################
 
     TicketTO:
       properties:
@@ -125,10 +152,14 @@ components:
           type: string
         rgIssuerCode:
           type: string
+        user_type:
+          enum:
+            - SYSADMIN
+            - REGULAR_USER
 
-#############################################
-# ITO - Input TO Section
-#############################################
+    #############################################
+    # ITO - Input TO Section
+    #############################################
     CreateUserITO:
       required:
         - name

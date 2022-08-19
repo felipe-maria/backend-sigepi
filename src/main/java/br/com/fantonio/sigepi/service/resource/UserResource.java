@@ -4,6 +4,7 @@ import br.com.fantonio.sigepi.service.api.UsersApi;
 import br.com.fantonio.sigepi.service.api.model.CreateUserITO;
 import br.com.fantonio.sigepi.service.api.model.UserTO;
 import br.com.fantonio.sigepi.service.business.CreateUser;
+import br.com.fantonio.sigepi.service.business.GetUserById;
 import br.com.fantonio.sigepi.service.business.ListAllUsers;
 import br.com.fantonio.sigepi.service.domain.entity.User;
 import org.modelmapper.ModelMapper;
@@ -22,6 +23,9 @@ public class UserResource implements UsersApi {
     @Inject
     CreateUser createUser;
 
+    @Inject
+    GetUserById getUserById;
+
     @Override
     public Response createUser(CreateUserITO input) {
 
@@ -32,6 +36,17 @@ public class UserResource implements UsersApi {
 
         UserTO to = modelMapper.map(input, new TypeToken<UserTO>() {
         }.getType());
+
+        return Response.ok().entity(to).build();
+    }
+
+    @Override
+    public Response getUserById(Long userId) {
+
+        User user = getUserById.doIt(userId);
+
+        ModelMapper modelMapper = new ModelMapper();
+        UserTO to = modelMapper.map(user, new TypeToken<UserTO>() {}.getType());
 
         return Response.ok().entity(to).build();
     }
