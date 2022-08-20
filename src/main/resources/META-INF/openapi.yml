@@ -136,6 +136,7 @@ components:
           format: int64
           type: integer
           example: 1
+
     UserTO:
       properties:
         id:
@@ -144,18 +145,27 @@ components:
           example: 1
         name:
           type: string
+          example: John Doe
         emailAddress:
           type: string
+          example: john.doe@mail.com
         cpfNumber:
           type: string
+          example: 35522245722
         rgNumber:
           type: string
+          example: 41.432.729-1
         rgIssuerCode:
           type: string
-        user_type:
+          example: SSP
+        rgIssuerFedUnit:
+          type: string
+          example: SP
+        userType:
           enum:
-            - SYSADMIN
-            - REGULAR_USER
+            - SYS_ADMIN
+            - TECH_SUPPORT
+            - CUSTOMER
 
     #############################################
     # ITO - Input TO Section
