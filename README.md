@@ -47,6 +47,10 @@ You can then execute your native executable with: `./target/backend-sigepi-1.0.0
 
 If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.
 
+## Remote debugging on docker
+
+Just enable env variable JAVA_TOOL_OPTIONS on docker-compose.yml and then connect with your favorite IDE.
+
 ## Related Guides
 
 - Flyway ([guide](https://quarkus.io/guides/flyway)): Handle your database schema migrations
