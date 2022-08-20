@@ -21,6 +21,7 @@ services:
       - QUARKUS_DATASOURCE_JDBC_VALIDATION_QUERY_SQL=SELECT 1
       - QUARKUS_DATASOURCE_JDBC_MAX_LIFETIME=PT2H
       - PROPAGATED_HEADERS=Authorization,Accept-Language
+      - JAVA_TOOL_OPTIONS="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005" # Enable this for debug
     depends_on:
       - sigepi-db
 
