@@ -3,7 +3,7 @@ package br.com.fantonio.sigepi.service.domain.entity;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "t_ticket_answer")
@@ -17,7 +17,7 @@ public class TicketAnswer {
     private String answer;
 
     @Column(name = "creation_date")
-    private LocalTime creationDate;
+    private LocalDateTime creationDate;
 
     @ManyToOne
     @JoinColumn(name = "responsible_id")
