@@ -36,7 +36,7 @@ public class DigitalCertificate implements Serializable {
     private DigitalCertificateSegment segment;
 
     @Column(name="expiry_date")
-    private LocalDate expiry_date;
+    private LocalDate expiryDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner")

@@ -47,6 +47,33 @@ paths:
       x-accepts: application/json
       x-tags:
         - tag: tickets
+  /users/{userId}:
+    get:
+      summary: Get an user by its Id
+      description: Get an user by its Id
+      operationId: getUserById
+      parameters:
+        - in: path
+          required: true
+          name: userId
+          schema:
+            format: int64
+            type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserTO'
+          description: successful operation
+        "400":
+          content: { }
+          description: Invalid status value
+      tags:
+        - users
+      x-accepts: application/json
+      x-tags:
+        - tag: users
   /users:
     get:
       summary: List all Users
@@ -99,9 +126,9 @@ paths:
 components:
   schemas:
 
-##############################################
-# Read only TOs section (Not input TO)
-##############################################
+    ##############################################
+    # Read only TOs section (Not input TO)
+    ##############################################
 
     TicketTO:
       properties:
@@ -109,6 +136,7 @@ components:
           format: int64
           type: integer
           example: 1
+
     UserTO:
       properties:
         id:
@@ -117,22 +145,35 @@ components:
           example: 1
         name:
           type: string
-        emailAddress:
+          example: John Doe
+        email:
           type: string
+          example: john.doe@mail.com
         cpfNumber:
           type: string
+          example: 35522245722
         rgNumber:
           type: string
+          example: 41.432.729-1
         rgIssuerCode:
           type: string
+          example: SSP
+        rgIssuerFedUnit:
+          type: string
+          example: SP
+        userType:
+          enum:
+            - SYS_ADMIN
+            - TECH_SUPPORT
+            - CUSTOMER
 
-#############################################
-# ITO - Input TO Section
-#############################################
+    #############################################
+    # ITO - Input TO Section
+    #############################################
     CreateUserITO:
       required:
         - name
-        - emailAddress
+        - email
         - cpfNumber
       properties:
         name:
@@ -140,7 +181,7 @@ components:
           minLength: 5
           maxLength: 75
           example: John Doe
-        emailAddress:
+        email:
           type: string
           minLength: 9
           maxLength: 100

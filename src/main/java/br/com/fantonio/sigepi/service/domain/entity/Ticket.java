@@ -4,7 +4,7 @@ import br.com.fantonio.sigepi.service.domain.entity.type.TicketStatus;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -17,10 +17,11 @@ public class Ticket {
     private String description;
 
     @Column(name = "creation_date")
-    private LocalTime creationDate;
+    private LocalDateTime creationDate;
 
     @Column(name = "closed_date")
-    private LocalTime closedDate;
+    private LocalDateTime closedDate;
+
     private String title;
 
     @ManyToOne
@@ -37,6 +38,5 @@ public class Ticket {
 
     @Enumerated(EnumType.STRING)
     private TicketStatus status;
-
 
 }
