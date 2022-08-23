@@ -17,7 +17,7 @@ public class User {
     private String name;
 
     @Column(name = "email_address")
-    private String emailAddress;
+    private String email;
 
     @Column(name = "cpf_number")
     private String cpfNumber;
